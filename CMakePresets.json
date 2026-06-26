@@ -13,7 +13,9 @@
                 "CMAKE_RANLIB": "llvm-ranlib",
                 "CMAKE_LINKER": "lld",
                 "CMAKE_EXPORT_COMPILE_COMMANDS": true,
-                "BUILD_SHARED_LIBS": true
+                "BUILD_SHARED_LIBS": true,
+                "VCPKG_TARGET_TRIPLET": "x64-linux-dynamic",
+                "CMAKE_TOOLCHAIN_FILE": "$env{VCPKG_ROOT}/scripts/buildsystems/vcpkg.cmake"
             },
             "condition": {
                 "type": "equals",
@@ -25,20 +27,18 @@
             "name": "linux-debug",
             "displayName": "Linux Debug",
             "inherits": "linux-base",
-            "installDir": "/usr/local",
+            "installDir": "${sourceDir}/out/install/${presetName}",
             "cacheVariables": {
                 "CMAKE_BUILD_TYPE": "Debug",
-                "CMAKE_PREFIX_PATH": "/usr/local"
+                "CMAKE_PREFIX_PATH": "${sourceDir}/out/build/${presetName}/vcpkg_installed/x64-linux/dynamic"
             }
         },
         {
             "name": "linux-release",
             "displayName": "Linux Release",
             "inherits": "linux-debug",
-            "installDir": "/usr/local",
             "cacheVariables": {
-                "CMAKE_BUILD_TYPE": "Release",
-                "CMAKE_PREFIX_PATH": "/usr/local"
+                "CMAKE_BUILD_TYPE": "Release"
             }
         }
     ]
