@@ -1,0 +1,3 @@
+cmake_helpers/
+out/
+compile_commands.json
