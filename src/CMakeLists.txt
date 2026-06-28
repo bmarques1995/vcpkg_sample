@@ -1,12 +1,13 @@
-set(TARGET_NAME qchat_server)
+set(TARGET_NAME server)
 
-file(GLOB_RECURSE QCHAT_SERVER_SRCS RELATIVE ${CMAKE_CURRENT_SOURCE_DIR} "*.cpp")
-file(GLOB_RECURSE QCHAT_SERVER_HDRS RELATIVE ${CMAKE_CURRENT_SOURCE_DIR} "*.hpp")
+file(GLOB_RECURSE SERVER_SRCS RELATIVE ${CMAKE_CURRENT_SOURCE_DIR} "*.cpp")
+file(GLOB_RECURSE SERVER_HDRS RELATIVE ${CMAKE_CURRENT_SOURCE_DIR} "*.hpp")
 
 find_package(spdlog REQUIRED)
+find_package(Crow REQUIRED)
 
-add_executable(${TARGET_NAME} ${QCHAT_SERVER_SRCS} ${QCHAT_SERVER_HDRS})
-target_link_libraries(${TARGET_NAME} PUBLIC spdlog::spdlog)
+add_executable(${TARGET_NAME} ${SERVER_SRCS} ${SERVER_HDRS})
+target_link_libraries(${TARGET_NAME} PUBLIC spdlog::spdlog Crow::Crow)
 
 set_cxx_project_standards(${TARGET_NAME} 23 FALSE)
 
